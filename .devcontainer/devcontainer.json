@@ -1,0 +1,58 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Python 3",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/python:0-3.11",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.mypy-type-checker",
+				"ms-python.black-formatter",
+				"ms-python.flake8"
+			],
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/local/bin/python",
+				"black-formatter.path": [
+					"/usr/local/py-utils/bin/black"
+				],
+				"flake8.path": [
+					"/usr/local/py-utils/bin/flake8"
+				],
+				"python.linting.flake8.enabled": true,
+				"editor.formatOnSave": true,
+				"[python]": {
+					"editor.defaultFormatter": "ms-python.black-formatter"
+				},
+				"black-formatter.args": [
+					"--config",
+					"pyproject.toml"
+				],
+				"editor.codeActionsOnSave": {
+					"source.organizeImports": true
+				}
+			},
+			"isort.args": [
+				"--profile",
+				"black"
+			],
+			"[json]": {
+				"editor.defaultFormatter": "vscode.json-language-features"
+			},
+			"[jsonc]": {
+				"editor.defaultFormatter": "vscode.json-language-features"
+			}
+		}
+	},
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "pip3 install --user -r requirements.txt",
+	// Configure tool-specific properties.
+	// "customizations": {},
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+	"postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt"
+}
